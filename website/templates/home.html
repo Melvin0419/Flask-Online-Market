@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+
+{% block title %} Home {% endblock %} 
+
+{% block content %}
+<h1 align="center">Products</h1>
+
+<ul class="list-group list-group-flush" id="notes">
+  {% for product in products %}
+  <li class="list-group-item">
+    <h3> {{product.name}} </h3>
+    <p> Subscription : {{product.content}} </p>
+    <p> $ {{product.cost}} | market : {{product.owner.name}}</p>
+
+    
+    <button class="close mx-3" type="button" onclick="addtocart({{product.id}})">
+      <span aria-hidden="true"> Buy </span>
+    </button>
+
+    <button class="close mx-3" type="button">
+      <a href="/product_profile/{{product.id}}">Profile</a>
+    </button>
+
+  </li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

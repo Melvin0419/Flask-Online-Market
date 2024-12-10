@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Cart {% endblock %}
+
+{% block content %} 
+
+<h1 align="center">Cart</h1>
+
+<ul class="list-group list-group-flush" id="notes">
+  {% for product in user.buy_products %}
+  <li class="list-group-item">
+    <h3> {{product.name}} </h3>
+    <p> Subscription : {{product.content}} </p>
+    <p> $ {{product.cost}} | market : {{product.owner.name}}</p>
+
+    <button class="close" type="button" onclick="rmfromcart({{product.id}})">
+        <span aria-hidden="true"> Remove </span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+
+
+{% endblock %}

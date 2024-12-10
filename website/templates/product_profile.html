@@ -1,0 +1,26 @@
+{% extends 'base.html' %} 
+
+{% block title %} Product Profile {% endblock%}
+
+{% block content %} 
+
+<h1 align="center"> Product Profile </h1>
+
+<h2>Name : {{product.name}} </h2>
+<p>Subscription : {{product.content}} </p>
+<p>Cost : {{product.cost}} </p>
+
+<p> Owner : {{product.owner.name}} </p>
+<p> Buyer : </p>
+<ul>
+    {% for buyer in product.buyer %}
+        <li> Buyer Name : {{buyer.name}} </li>
+    {% endfor %}
+</ul>
+
+<button class="close mx-3" type="button" onclick="addtocart({{product.id}})">
+    <span aria-hidden="true"> Buy </span>
+</button>
+
+
+{% endblock %}
