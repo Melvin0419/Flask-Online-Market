@@ -11,20 +11,20 @@ This web application allows users to purchase goods on the website. Users can si
 
 * **User Profile Page**
 
-   This page shows the user's information, including name, email, and uploaded products. It also allows users to upload their products to sell.
+   This page shows the user's information, including name, email, and products that are uploaded by themself. This page also allows users to upload their products to sell.
 * **Product Profile Page**
 
-   Shows detailed information about the product. it also shows the buyers under the product information.
+   Shows detailed information about the product including the product's name, description, cost, and the owner's name. Users who have bought this product, their name will also be shown under the product information.
 
 * **Cart Page**
 
-   Shows products that are added to the cart.
+   Shows products that are added to the cart. Any change to the cart (add new products, remove products) is allowable.
 
-## How to utilize this web application
+## How to run this web application
 1. Clone this repo to the local side and install necessary packages(check requirements.txt)
 2. Execute `main.py` to activate the server.
-3. To directly experience the function of the web app, use `create_data.py` to add `User` and `Product` instances to the database. The script will automatically grab the data from `data.xlsx` and then create instances.
-4. Visit the local URL and start to experience the function.
+3. To quickly experience this web app, use `create_data.py` to add `User` and `Product` instances to the database. The script will automatically grab the data from `data.xlsx` and then create instances.
+4. Visit the local URL and start to create your account and purchase something good.
 
 
 ![image](https://github.com/user-attachments/assets/ac79644e-2a31-4689-8aa4-e12599bcd9cd)
