@@ -20,7 +20,7 @@ def create_app():
     from website import model
 
     with app.app_context():
-        db.create_all(checkfirst=True)
+        db.create_all()
 
     # Login manager
     login_manager = LoginManager()
