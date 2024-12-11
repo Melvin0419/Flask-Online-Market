@@ -20,7 +20,7 @@ def user_profile():
         product_content = request.form.get('product_content')
         product_cost = request.form.get('product_cost')
 
-        new_product = Product(name=product_name, content=product_content, cost=product_cost,owner_id=current_user.id)
+        new_product = Product(name=product_name, content=product_content, cost=product_cost, owner_id=current_user.id)
         
         flash(message='Successfully Upload Product!')
 
@@ -78,6 +78,5 @@ def rmfromcart():
     flash(message='Product is removed from your cart',category='success')
     return jsonify({'message':'Product is removed from your cart'})
 
-    
 
 
