@@ -21,7 +21,7 @@ This web application allows users to purchase goods on the website. Users can si
    Shows products that are added to the cart. Any change to the cart (add new products, remove products) is allowable.
 
 ## How to run this web application
-1. Clone this repo to the local side and install necessary packages(check requirements.txt)
+1. Clone this repo to the local side and install necessary packages(check `requirements.txt`)
 2. Execute `main.py` to activate the server.
 3. To quickly experience this web app, use `create_data.py` to add `User` and `Product` instances to the database. The script will automatically grab the data from `data.xlsx` and then create instances.
 4. Visit the local URL and start to create your account and purchase something good.
@@ -29,4 +29,7 @@ This web application allows users to purchase goods on the website. Users can si
 
 ![image](https://github.com/user-attachments/assets/ac79644e-2a31-4689-8aa4-e12599bcd9cd)
 
+## Visit the online website
+This web application is deployed on Heroku, click the above URL to visit the website.
 
+https://flask-online-market-2dce5e8d9d83.herokuapp.com/
