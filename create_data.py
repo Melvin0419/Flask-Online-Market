@@ -1,8 +1,10 @@
 import requests
 import pandas as pd
 
+
+
 BASE = 'http://127.0.0.1:5000/'
-# BASE = 'https://flask-online-market-c7ff847298d9.herokuapp.com/'
+# BASE = 'https://flask-online-market-2dce5e8d9d83.herokuapp.com/'
 
 # Create a session to maintain cookies
 session = requests.Session()
@@ -12,14 +14,14 @@ products = pd.read_excel('./data.xlsx',sheet_name='Product')
 
 # Signup Users
 for user in users.to_dict('records'):
-    print(user)
+    # print(user)
     signup_response = session.post(BASE + 'signup',data=user)
     if signup_response.ok:
         print(f'{user["username"]} sign up')
 
 
 # Login and Upload Product
-for user_name in users['username'][1:]:
+for user_name in users['username'][:]:
     user = {
         'email':user_name + '@gmail.com',
         'password':user_name

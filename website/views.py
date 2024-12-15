@@ -7,7 +7,22 @@ views = Blueprint('views',__name__)
 
 @views.route('/')
 def home():
-    products = Product.query.all()
+
+    sort_by = request.args.get('sort_by','')
+    filter_by = request.args.get('filter_by','')
+
+    query = Product.query
+
+    if filter_by:
+        query = query.filter(Product.name.ilike(f'%{filter_by}%'))
+
+    if sort_by == 'name':
+        query = query.order_by(Product.name.asc())
+    elif sort_by == 'cost':
+        query = query.order_by(Product.cost.asc())
+
+    products = query.all()
+    # products = Product.query.all()
     return render_template('home.html',products=products,user=current_user)
 
 @login_required
@@ -29,6 +44,22 @@ def user_profile():
 
     return render_template('user_profile.html', user=current_user)
 
+@login_required
+@views.route('user_products',methods=['POST','GET'])
+def user_products():
+    if request.method == 'POST':
+        product_name = request.form.get('name')
+        product_content = request.form.get('content')
+        product_cost = request.form.get('name')
+
+        new_product = Product(name=product_name,content=product_content,cost=product_cost,owner=current_user)
+
+        db.sessoin.add(new_product)
+        db.session.commit()
+
+    return render_template('user_products.html', user=current_user)
+
+
 @views.route('product_profile/<int:product_id>')
 def product_profile(product_id):
     product = Product.query.get(product_id)
@@ -39,6 +70,13 @@ def product_profile(product_id):
 @views.route('cart')
 def cart():
     return render_template('cart.html', user=current_user)
+
+@views.route('admin')
+def admin():
+    users = User.query.all()
+    products = Product.query.all()
+    return render_template('admin.html',users=users,products=products,user=current_user)
+
 
 @login_required
 @views.route('addtocart',methods=['POST'])
@@ -78,5 +116,26 @@ def rmfromcart():
     flash(message='Product is removed from your cart',category='success')
     return jsonify({'message':'Product is removed from your cart'})
 
+@views.route('deleteuser',methods=['POST'])
+def deleteuser():
+    user_id = json.loads(request.data)['user_id']
+    user = User.query.get(int(user_id))
 
+    db.session.delete(user)
+    db.session.commit()
+
+    flash(message='User is deleted',category='success')
+    return jsonify({'message':'User is deleted'})
+
+@login_required
+@views.route('deleteproduct',methods=['POST'])
+def deleteproduct():
+    product_id = json.loads(request.data)['product_id']
+    product = Product.query.get(int(product_id))
+
+    db.session.delete(product)
+    db.session.commit()
+
+    flash(message='product is deleted',category='success')
+    return jsonify({'message':'product is deleted'})
 

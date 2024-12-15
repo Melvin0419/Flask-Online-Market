@@ -15,9 +15,10 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(150))
     name = db.Column(db.String(150))
     date = db.Column(db.DateTime(timezone=True),default=func.now())
+    role = db.Column(db.String(10), default='user',nullable=False)
 
     # Specify which foreign key to use for the relationship with Product
-    own_products = db.relationship('Product', foreign_keys='Product.owner_id',back_populates='owner')
+    own_products = db.relationship('Product', foreign_keys='Product.owner_id',back_populates='owner',cascade="all, delete-orphan")
     buy_products = db.relationship('Product', secondary = user_product_association ,back_populates='buyer')
 
 class Product(db.Model):

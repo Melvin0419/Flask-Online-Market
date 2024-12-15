@@ -5,6 +5,21 @@
 {% block content %}
 <h1 align="center">Products</h1>
 
+   <!-- Sorting and Filtering Form -->
+<form method="GET" action="/">
+  <label for="sort_by">Sort By:</label>
+  <select name="sort_by" id="sort_by">
+      <option value="">--Select--</option>
+      <option value="name">Name</option>
+      <option value="cost">Cost</option>
+  </select>
+
+  <label for="filter_by">Filter by Keyword:</label>
+  <input type="text" id="filter_by" name="filter_by" placeholder="Enter keyword" />
+
+  <button type="submit">Apply</button>
+</form>
+
 <ul class="list-group list-group-flush" id="notes">
   {% for product in products %}
   <li class="list-group-item">

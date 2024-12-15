@@ -12,15 +12,17 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
+    # 註冊 Blueprints
     from .views import views
     from .auth import auth
     app.register_blueprint(views,url_prefix='/')
     app.register_blueprint(auth,url_prefix='/')
 
+    # 初始化資料庫
     from website import model
-
     with app.app_context():
         db.create_all()
+    
 
     # Login manager
     login_manager = LoginManager()

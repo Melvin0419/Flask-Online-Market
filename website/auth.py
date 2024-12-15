@@ -40,13 +40,14 @@ def signup():
         name = request.form.get('username')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
+        role = request.form.get('role')
 
         # check signup information
         if password1 == password2:
             
             flash(message='Sign up Successfully!', category='success')
 
-            new_user = User(email=email, name=name, password=generate_password_hash(password1, method='scrypt'))
+            new_user = User(email=email, name=name, password=generate_password_hash(password1, method='scrypt'),role=role)
 
             db.session.add(new_user)
             db.session.commit()
