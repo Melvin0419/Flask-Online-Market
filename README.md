@@ -39,7 +39,4 @@ This web application allows users to purchase goods on the website. Users can si
 
 ![image](https://github.com/user-attachments/assets/cf14fa44-5a89-40ae-b487-c43a49aa3979)
 
-## Visit the online website
-This web application is deployed on Heroku, click the above URL to visit the website.
 
-https://flask-online-market-2dce5e8d9d83.herokuapp.com/
